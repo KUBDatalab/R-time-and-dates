@@ -1,0 +1,18 @@
+---
+title: "Math with date-times"
+teaching: 42
+exercises: 47
+questions: 
+- "How do I convert weird text to dates and times."
+
+objectives:
+- "Objective 1"
+
+keypoints:
+- "keypoint1"
+source: Rmd
+---
+
+Så laver vi matematik på date-times.
+
+{% include links.md %}
