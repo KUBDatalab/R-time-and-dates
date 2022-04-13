@@ -1,0 +1,37 @@
+---
+title: "Introduction to time"
+teaching: 42
+exercises: 47
+questions: 
+- "What is time?"
+- "Various issues when working with time"
+objectives:
+- "Understand how time is defined in the context of R"
+- "Understand how complicated this actually is"
+keypoints:
+- "People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly... time-y wimey... stuff."
+source: Rmd
+---
+
+```{r}
+library(lubridate)
+test <- lubridate::as_datetime("1918-01-01 11:00:00")
+test2 <- with_tz(test, tzone="Europe/Moscow")
+test2 + 34*60*60*24
+
+library(tidyverse)
+
+
+tmp <- as.POSIXlt("16Jun10", format = "%d%b%y")
+tmp$yday
+
+OlsonNames() %>% enframe() %>% filter(str_detect(value, "Mos"))
+```
+
+men vi kommer kun til at kigge på normale datoer her.
+
+Den anden pakke vi skal kigge på er library(tsibble)
+
+
+
+{% include links.md %}

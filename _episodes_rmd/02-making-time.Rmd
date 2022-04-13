@@ -1,0 +1,21 @@
+---
+title: "Converting to time and dateformat"
+teaching: 42
+exercises: 47
+questions: 
+- "How do I convert weird text to dates and times."
+
+objectives:
+- "Objective 1"
+
+keypoints:
+- "keypoint1"
+source: Rmd
+---
+
+
+Her tager vi underlige tekst formater og konverterer til tid og dato.
+
+test
+
+{% include links.md %}
