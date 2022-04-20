@@ -15,4 +15,20 @@ source: Rmd
 
 Så laver vi matematik på date-times.
 
+vi taler perioder, duration, intervals
+
+Vi starter med duration, der er den enkleste. Det er simpelthen et tidsrum, 
+målt i sekunder.
+
+Så er der et interval. Det måler vi også i sekunder, men har en startdato.
+Det måler tid forløbet i sekunder, mellem to specifikke tidspunkter.
+
+og så er der en periode.
+De har variable længder. længden af en måned varierer jo fra 28 til 31 dage.
+Når vi arbejder med perioder har vi mulighed for at lægge en måned til 1. februar
+og få 1. marts. Uden at bekymre os om hvor mange dage der er i den måned.
+
+
+
+
 {% include links.md %}
