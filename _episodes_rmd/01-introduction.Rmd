@@ -13,6 +13,78 @@ keypoints:
 source: Rmd
 ---
 
+doktoren 
+
+Link til Tom 
+https://www.youtube.com/watch?v=-5wpm-gesOY
+
+En 10 minutter lang rant om hvorfor man som programmør aldrig ALDRIG bør arbejde 
+med tidszoner.
+
+Vi starter med at se hvor mange sekunder der er gået fra et bestemt tidspunkt.
+Men nu vil vi ændre tidszoner. Så hvad er forskellen på NU i London og for 
+fem dage siden i New York. det er en forskel på X timer.
+
+Så er der australien. De er 9½ time foran London.
+
+Nepal... De er 5 1/4 foran london.
+
+Så kigger vi på listen over tidszoner.
+
+så bliver det efterår. Og vi går fra sommertid til vintertid.
+
+Men England skifter en uge før os andre...
+
+Så vi kigger på listen over hvornår forskellige lande skifter sommertid.
+
+Så er der lige den detalje, at på den sydlige del af halvkuglen. Der sætter 
+de havemøblerne frem i hvad der er efterår på den nordlige halvdel.
+Så... (er det ikke meget eurocentrisk at vi lader den nordlige halvdel 
+sætte standarden? Måske. men 67.3% af jordens landmasse ligger nord for 
+ækvator. og 87% af befolkningen bor nord for ækvator. Jamen hvad med Afrika?
+er det ikke ondt at vi lader den nordlige halvkugle definere det?
+Måske. ca. 2/3 af afrika ligger nord for ækvator. Så det.)
+
+
+Samoa. I 2011 sprang de en dag over. De gik fra 29. december til 31. december.
+Fordi de hoppede fra den ene side af datolinien til den anden (eller rettere
+datolinien blev flyttet)
+Så vi napper også listen over hvornår et land skifter tidszone.
+
+Under anden verdenskrig havde UK dobbel sommertid. 
+
+Listen over hvornår lande skifter tidszoner. Find den.
+
+Vestbredden... Den israelske befolkning lever efter israelsk tidszone. og palæstinenserne 
+efter en anden (for guderne forbyde at...)
+
+Og så var der historikerne.
+
+Skiftet fra den julianske til den gregorianske kalender. hvor vi hopper ca tre uger.
+
+Den russiske historiker. Der skifter kalenderen i 1918.,..
+
+og den engelske historiker. Der fortæller at indtil 1600 tallet - der startede året
+den 24 marts. 
+
+Skudsekunder... Der undertiden er negative...
+
+23.59.58
+23.59.59
+23.59.60
+00.00.00
+
+Så 61 sekunder i et minut...
+
+Unix timestamp. 
+
+UTC er løsningen, der inkluderer skudsekunder.
+
+Altså bortset fra astonomisk tid. Der ikke inkluderer skudsekunder.
+
+
+https://www.iana.org/time-zones
+
 ```{r}
 library(lubridate)
 test <- lubridate::as_datetime("1918-01-01 11:00:00")
