@@ -9,6 +9,7 @@
 # kd: KUB Datalab
 # cp: Carpentries (to use for instructor traning for instance)
 # incubator: Carpentries Incubator
+# kd: KUB Datalab
 carpentry: "kd"
 
 # Overall title for pages.
