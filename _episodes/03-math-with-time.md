@@ -14,6 +14,7 @@ keypoints:
 - "keypoint1"
 source: Rmd
 ---
+Nu har vi fået konverteret vores tidsangivelser til noget R forstår. UTC. Hvordan laver vi så matematik på de angivelser.
 
 Så laver vi matematik på date-times.
 
@@ -24,6 +25,8 @@ målt i sekunder.
 
 Så er der et interval. Det måler vi også i sekunder, men har en startdato.
 Det måler tid forløbet i sekunder, mellem to specifikke tidspunkter.
+
+
 
 og så er der en periode.
 De har variable længder. længden af en måned varierer jo fra 28 til 31 dage.

@@ -163,6 +163,61 @@ men vi kommer kun til at kigge på normale datoer her.
 
 Den anden pakke vi skal kigge på er library(tsibble)
 
+Eller - det skal vi nok ikke. Vi skal snarere kigge på
+zoo::yearmon og zoo::yearqtr
 
+Det lader til at lubridate ikke tager højde for skudsekunder.
+
+Udgangspunktet for tid i R er POSIX time. Antallet af 
+sekunder efter 1970-01-01T00:00:00z.
+Z'et angiver at vi taler om UTC, universal coordinated
+time. Det klokken ER. Definitorisk!
+
+tidspunkter før tælles som negative værdier.
+
+Det er her vi bliver bekymret for hvad der sker når 
+antallet af sekunder bliver for stort. Det fixer vi.
+
+Det samme med datoer - antal dage før eller efter 
+1970-01-01.
+
+posixct. Kalendertid. antal sekunder siden sammen med
+en tidszone.
+posixlt. Lokal tid. Der er vist også en weekdag.
+
+unclass() er værd at kigge på.
+
+I R arbejder vi med fire forskellige tidsfænomener.
+Et punkt i tid (og til en vis grad i rum). et tidspunkt.
+
+En duration. En uge. En måned. En time. Vi kan skabe en duration med
+lubridate::dxxxx hvor xxxx er den vi vil lave. Fra nanosekunder til uger. Vi holder fingrene fra måneder og år, for de har ikke en fast længde, og vi vil få returneret den gennemsnitlige længde: En gang imellem er ne måned 
+
+```r
+lubridate::dyears()
+```
+
+```
+## [1] "31557600s (~1 years)"
+```
+
+```r
+31557600/60/60/24
+```
+
+```
+## [1] 365.25
+```
+Derfor har vi også perioder. En tidsforskel der matcher
+den gregorianske kalender. Så hvis vi lægger en måned til
+1. februar, får vi 1. marts. Og hvis vi lægger en måned til
+1. marts, får vi 1. april. 
+
+Interval. 
+Hvad er sammenhængen mellem interval og duration?
+Et interval er den tid, det antal sekunder, der er mellem to specifikke tidspunkter.
+https://www.jstatsoft.org/article/view/v040i03
+
+Konklusionen indtil videre er vist at jeg stadig er usikker på de tre koncepter...
 
 {% include links.md %}

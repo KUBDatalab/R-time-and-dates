@@ -18,6 +18,8 @@ source: Rmd
 
 Her tager vi underlige tekst formater og konverterer til tid og dato.
 
+Har vi en angivelse af et tidspunkt. Et instant. Hvordan får vi det konverteret til noget R forstår.
+
 test
 
 {% include links.md %}
