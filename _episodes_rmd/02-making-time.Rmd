@@ -13,10 +13,8 @@ keypoints:
 source: Rmd
 ---
 
+Time often comes to us as text. The first task is therefore to be able to convert text to Posix time.
 
-Her tager vi underlige tekst formater og konverterer til tid og dato.
-
-Har vi en angivelse af et tidspunkt. Et instant. Hvordan får vi det konverteret til noget R forstår.
 
 test
 

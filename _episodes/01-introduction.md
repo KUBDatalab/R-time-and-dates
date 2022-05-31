@@ -21,207 +21,51 @@ source: Rmd
 
 - Doctor Who, Blink, 
 
-Link til Tom 
-https://www.youtube.com/watch?v=-5wpm-gesOY
+Alternatively we could take a look at this rant from geeky youtuber Tom Scott, who explains the reasons for this being quite difficult:
 
-En 10 minutter lang rant om hvorfor man som programmør aldrig ALDRIG bør arbejde 
-med tidszoner.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-5wpm-gesOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Vi starter med at se hvor mange sekunder der er gået fra et bestemt tidspunkt.
-Men nu vil vi ændre tidszoner. Så hvad er forskellen på NU i London og for 
-fem dage siden i New York. det er en forskel på X timer.
+> ## TL;DR
+>
+> What we learn from looking at writing code for handling time and dates is that what you do, is you put away your code, you don't try and write anything to deal with this. You look at the people who have been there before you. You look at the first people, the people who have dealt with this before, the people who have built the spaghetti code, and you go to them, and you thank them very much for making it open source, and you give them credit, and you take what they have made and you put it in your program, and you never ever look at it again, because that way lies madness
 
-Så er der australien. De er 9½ time foran London.
+A point of time in R is defined as the number of seconds after, or before a fixed point in time.
 
-Nepal... De er 5 1/4 foran london.
-
-Så kigger vi på listen over tidszoner.
-
-så bliver det efterår. Og vi går fra sommertid til vintertid.
-
-Men England skifter en uge før os andre...
-
-Så vi kigger på listen over hvornår forskellige lande skifter sommertid.
-
-Så er der lige den detalje, at på den sydlige del af halvkuglen. Der sætter 
-de havemøblerne frem i hvad der er efterår på den nordlige halvdel.
-Så... (er det ikke meget eurocentrisk at vi lader den nordlige halvdel 
-sætte standarden? Måske. men 67.3% af jordens landmasse ligger nord for 
-ækvator. og 87% af befolkningen bor nord for ækvator. Jamen hvad med Afrika?
-er det ikke ondt at vi lader den nordlige halvkugle definere det?
-Måske. ca. 2/3 af afrika ligger nord for ækvator. Så det.)
+> ## Some of the many problems
+> Given a point of time. Now! What is the current time in our timezone? And what is the current time in New York?
+> We tend to think of timezones as whole number intervals. 
+> But Australia is 9½ hours ahead of London.
+> Nepal is 5 1/4 hours ahead of London.
+> What about daylight savings time (DST)? Great Britain chages an hour before us.
+> And some times countries change the date for the introduction of DST with short notice.
+> Also remember that DST in Denmark moves the clock ahead in summer. But Australia moves it ahead in autum.
+> Some countries misses dates. Samoa jumped from december 29th 2011 to december 31st 2011, when the moved (administratively) from one side of the international dateline to the other.
 
 
-Samoa. I 2011 sprang de en dag over. De gik fra 29. december til 31. december.
-Fordi de hoppede fra den ene side af datolinien til den anden (eller rettere
-datolinien blev flyttet)
-Så vi napper også listen over hvornår et land skifter tidszone.
+The solution to these problems is to use UTC, Universal Coordinated Time in combination with the Posix time, also known as Unix time or Epoch time.
 
-Under anden verdenskrig havde UK dobbel sommertid. 
+> ## Why UTC?
+> Two reasons. The french suggested TUC, the english speaking world CUT. UTC is the compromise that left noone satisfied.
 
-Listen over hvornår lande skifter tidszoner. Find den.
+Posix time define an instant on the timeline as the number of seconds elapsed since 00:00:00 UTC on January 1st 1970. Time before that arbitrarily selected date is counted as negative seconds.
 
-Vestbredden... Den israelske befolkning lever efter israelsk tidszone. og palæstinenserne 
-efter en anden (for guderne forbyde at...)
+We are not going to go into leap seconds and the specifics of how Posix time is adjusted to keep it in sync with UTC. That way lies madness.
 
-Og så var der historikerne.
+For the purposes of this introduction, we are going to disregard leap seconds, positive as well as negative, and go with the definition that a point in time is given by the number of seconds (or milliseconds or whatever resolution we need), after or before 00:00:00 UTC on January 1st 1970.
 
-Skiftet fra den julianske til den gregorianske kalender. hvor vi hopper ca tre uger.
+As hinted to handling times and dates is not easy, and fortunately someone else has written libraries that make everything not easy, but easier.
 
-Den russiske historiker. Der skifter kalenderen i 1918.,..
+We are going to be working with two libraries, lubridate, which is part of the tidyverse, and zoo.
 
-og den engelske historiker. Der fortæller at indtil 1600 tallet - der startede året
-den 24 marts. 
+Lubridate handles most of the things we need to do with time. Zoo provides infrastructure for handling time-series, an important, but confusing topic in itself. We are going to be using it for handling irregular time, like quarters and months.
 
-Skudsekunder... Der undertiden er negative...
+We are working with a limited number of phenomenons regarding time:
 
-23.59.58
-23.59.59
-23.59.60
-00.00.00
-
-Så 61 sekunder i et minut...
-
-Unix timestamp. 
-
-UTC er løsningen, der inkluderer skudsekunder.
-
-Altså bortset fra astonomisk tid. Der ikke inkluderer skudsekunder.
+- instant - a point in time.
+- a duration. A given span of time, like days and weeks. They have a specific length measured in seconds, and even though we can work with a duration of a year or month, we are not going to, since months and years have variable length
+- interval
+- period
 
 
-https://www.iana.org/time-zones
-
-
-```r
-library(lubridate)
-```
-
-```
-## 
-## Attaching package: 'lubridate'
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     date, intersect, setdiff, union
-```
-
-```r
-test <- lubridate::as_datetime("1918-01-01 11:00:00")
-test2 <- with_tz(test, tzone="Europe/Moscow")
-test2 + 34*60*60*24
-```
-
-```
-## [1] "1918-02-04 13:31:19 MMT"
-```
-
-```r
-library(tidyverse)
-```
-
-```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.7     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-```
-
-```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ lubridate::as.difftime() masks base::as.difftime()
-## ✖ lubridate::date()        masks base::date()
-## ✖ dplyr::filter()          masks stats::filter()
-## ✖ lubridate::intersect()   masks base::intersect()
-## ✖ dplyr::lag()             masks stats::lag()
-## ✖ lubridate::setdiff()     masks base::setdiff()
-## ✖ lubridate::union()       masks base::union()
-```
-
-```r
-tmp <- as.POSIXlt("16Jun10", format = "%d%b%y")
-tmp$yday
-```
-
-```
-## [1] 166
-```
-
-```r
-OlsonNames() %>% enframe() %>% filter(str_detect(value, "Mos"))
-```
-
-```
-## # A tibble: 1 × 2
-##    name value        
-##   <int> <chr>        
-## 1   459 Europe/Moscow
-```
-
-men vi kommer kun til at kigge på normale datoer her.
-
-Den anden pakke vi skal kigge på er library(tsibble)
-
-Eller - det skal vi nok ikke. Vi skal snarere kigge på
-zoo::yearmon og zoo::yearqtr
-
-Det lader til at lubridate ikke tager højde for skudsekunder.
-
-Udgangspunktet for tid i R er POSIX time. Antallet af 
-sekunder efter 1970-01-01T00:00:00z.
-Z'et angiver at vi taler om UTC, universal coordinated
-time. Det klokken ER. Definitorisk!
-
-tidspunkter før tælles som negative værdier.
-
-Det er her vi bliver bekymret for hvad der sker når 
-antallet af sekunder bliver for stort. Det fixer vi.
-
-Det samme med datoer - antal dage før eller efter 
-1970-01-01.
-
-posixct. Kalendertid. antal sekunder siden sammen med
-en tidszone.
-posixlt. Lokal tid. Der er vist også en weekdag.
-
-unclass() er værd at kigge på.
-
-I R arbejder vi med fire forskellige tidsfænomener.
-Et punkt i tid (og til en vis grad i rum). et tidspunkt.
-
-En duration. En uge. En måned. En time. Vi kan skabe en duration med
-lubridate::dxxxx hvor xxxx er den vi vil lave. Fra nanosekunder til uger. Vi holder fingrene fra måneder og år, for de har ikke en fast længde, og vi vil få returneret den gennemsnitlige længde: En gang imellem er ne måned 
-
-```r
-lubridate::dyears()
-```
-
-```
-## [1] "31557600s (~1 years)"
-```
-
-```r
-31557600/60/60/24
-```
-
-```
-## [1] 365.25
-```
-Derfor har vi også perioder. En tidsforskel der matcher
-den gregorianske kalender. Så hvis vi lægger en måned til
-1. februar, får vi 1. marts. Og hvis vi lægger en måned til
-1. marts, får vi 1. april. 
-
-Interval. 
-Hvad er sammenhængen mellem interval og duration?
-Et interval er den tid, det antal sekunder, der er mellem to specifikke tidspunkter.
-https://www.jstatsoft.org/article/view/v040i03
-
-Konklusionen indtil videre er vist at jeg stadig er usikker på de tre koncepter...
 
 {% include links.md %}
