@@ -5,7 +5,7 @@ title: "Math with date-times"
 teaching: 42
 exercises: 47
 questions: 
-- "How do I convert weird text to dates and times."
+- "Math on time"
 
 objectives:
 - "Objective 1"

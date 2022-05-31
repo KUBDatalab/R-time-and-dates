@@ -5,7 +5,7 @@ title: "Converting to time and dateformat"
 teaching: 42
 exercises: 47
 questions: 
-- "How do I convert weird text to dates and times."
+- "How do I convert text to dates and times."
 
 objectives:
 - "Objective 1"

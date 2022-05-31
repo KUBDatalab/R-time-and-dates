@@ -9,13 +9,17 @@ questions:
 - "Various issues when working with time"
 objectives:
 - "Understand how time is defined in the context of R"
-- "Understand how complicated this actually is"
+- "Get a glimpse of how complicated this actually is"
 keypoints:
 - "People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly... time-y wimey... stuff."
 source: Rmd
 ---
 
-doktoren 
+"People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly... time-y wimey... stuff."
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/q2nNzNo_Xps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Doctor Who, Blink, 
 
 Link til Tom 
 https://www.youtube.com/watch?v=-5wpm-gesOY
