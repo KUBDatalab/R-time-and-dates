@@ -16,4 +16,78 @@ source: Rmd
 kvartaler og den slags.
 zoo biblioteket.
 
+Vi har undertiden behov for datoformater der ikke er "almindelige".
+
+vi kan gøre en del med lubridatefunktionerne.
+quarter(x) Den kan eg fortælle os hvilket kvartal en given dato hører hjemme i. Og så kunne vi konstruere os til tingene.
+
+Men vi får også bizarheder fra de data vi trækker. Danmarks Statistik er eksempelvis meget begejstret for at levere kvartal-data.
+"2008Q1"
+Hvordan oversætter vi det til noget R kan forstå?
+
+Man kan dele den op. Men det vil være at foretrække om R kan forstår kvartaler direkte.
+
+zoo biblioteket tilføjer en række nyttige tidsformater:
+yearqtr
+
+
+R version 4.2.0 (2022-04-22 ucrt) -- "Vigorous Calisthenics"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Workspace loaded from ~/R_projekter/R-time-and-dates/.RData]
+
+> x <- ymd(c("2012-03-26", "2012-05-04", "2012-09-23", "2012-12-31"))
+Error in ymd(c("2012-03-26", "2012-05-04", "2012-09-23", "2012-12-31")) : 
+  could not find function "ymd"
+In addition: Warning messages:
+1: In yaml::yaml.load(..., eval.expr = TRUE) :
+  NAs introduced by coercion: . is not a real
+2: In yaml::yaml.load(..., eval.expr = TRUE) :
+  NAs introduced by coercion: . is not a real
+3: In yaml::yaml.load(..., eval.expr = TRUE) :
+  NAs introduced by coercion: . is not a real
+> quarter(x)
+Error in quarter(x) : could not find function "quarter"
+> library(lubridate)
+
+Vedhæfter pakke: ‘lubridate’
+
+De følgende objekter er maskerede fra ‘package:base’:
+
+    date, intersect, setdiff, union
+
+> x <- ymd(c("2012-03-26", "2012-05-04", "2012-09-23", "2012-12-31"))
+> quarter(x)
+[1] 1 2 3 4
+> zoo::as.Date.yearqtr("2008Q2")
+Error in x + 0.001 : non-numeric argument to binary operator
+> zoo::as.yearqtr("2008Q2")
+[1] "2008 Q2"
+> zoo::as.yearmon("2008M1")
+[1] NA
+> zoo::as.yearmon("2008-1")
+[1] "jan 2008"
+> zoo::as.yearmon("jan2008")
+[1] "jan 2008"
+> zoo::as.yearmon("jan08")
+
+NB! vi kan være nødt til at fortælle hvordan vores input er formatteret. 
+as.yearmon("mar07", "%b%y")
+
+Challenge:
+Konverter 98feb til en yearmon object
+
 {% include links.md %}
