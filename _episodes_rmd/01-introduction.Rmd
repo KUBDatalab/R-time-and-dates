@@ -13,6 +13,11 @@ keypoints:
 source: Rmd
 ---
 
+## It's complicated
+
+
+
+
 "People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly... time-y wimey... stuff."
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/q2nNzNo_Xps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -26,6 +31,7 @@ Alternatively we could take a look at this rant from geeky youtuber Tom Scott, w
 > ## TL;DR
 >
 > What we learn from looking at writing code for handling time and dates is that what you do, is you put away your code, you don't try and write anything to deal with this. You look at the people who have been there before you. You look at the first people, the people who have dealt with this before, the people who have built the spaghetti code, and you go to them, and you thank them very much for making it open source, and you give them credit, and you take what they have made and you put it in your program, and you never ever look at it again, because that way lies madness
+{: .callout}
 
 A point of time in R is defined as the number of seconds after, or before a fixed point in time.
 
@@ -38,12 +44,13 @@ A point of time in R is defined as the number of seconds after, or before a fixe
 > And some times countries change the date for the introduction of DST with short notice.
 > Also remember that DST in Denmark moves the clock ahead in summer. But Australia moves it ahead in autum.
 > Some countries misses dates. Samoa jumped from december 29th 2011 to december 31st 2011, when the moved (administratively) from one side of the international dateline to the other.
-
+{: .callout}
 
 The solution to these problems is to use UTC, Universal Coordinated Time in combination with the Posix time, also known as Unix time or Epoch time.
 
 > ## Why UTC?
 > Two reasons. The french suggested TUC, the english speaking world CUT. UTC is the compromise that left noone satisfied.
+{: .callout}
 
 Posix time define an instant on the timeline as the number of seconds elapsed since 00:00:00 UTC on January 1st 1970. Time before that arbitrarily selected date is counted as negative seconds.
 

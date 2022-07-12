@@ -13,9 +13,10 @@ keypoints:
 source: Rmd
 ---
 
-Time often comes to us as text. The first task is therefore to be able to convert text to Posix time.
+Time often comes to us as text. The first task is therefore to be able to 
+convert text to something R can understand as dates and times.
 
 
-test
+
 
 {% include links.md %}
