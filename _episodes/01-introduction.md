@@ -18,7 +18,8 @@ source: Rmd
 ## It's complicated
 
 
-
+Working with dates and time is complicated. So complicated that it even 
+enters popular culture:
 
 "People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly... time-y wimey... stuff."
 
@@ -35,7 +36,14 @@ Alternatively we could take a look at this rant from geeky youtuber Tom Scott, w
 > What we learn from looking at writing code for handling time and dates is that what you do, is you put away your code, you don't try and write anything to deal with this. You look at the people who have been there before you. You look at the first people, the people who have dealt with this before, the people who have built the spaghetti code, and you go to them, and you thank them very much for making it open source, and you give them credit, and you take what they have made and you put it in your program, and you never ever look at it again, because that way lies madness
 {: .callout}
 
-A point of time in R is defined as the number of seconds after, or before a fixed point in time.
+
+The complications arises because calendars and clocks are human constructs, 
+on a foundation of very real physical phenomenons. And it is plenty complicated
+without considering relativity or quantum effects.
+
+In other words, dates and times are measuring something in the real world that
+is not that well understood. And the way we are doing it, only complicates 
+it further.
 
 > ## Some of the many problems
 > Given a point of time. Now! What is the current time in our timezone? And what is the current time in New York?
@@ -50,21 +58,31 @@ A point of time in R is defined as the number of seconds after, or before a fixe
 
 The solution to these problems is to use UTC, Universal Coordinated Time in combination with the Posix time, also known as Unix time or Epoch time.
 
+UTC is, by definition, what the time *is*. This is all rather complicated:
+https://www.bipm.org/en/si-base-units/second
+
+
+
+
 > ## Why UTC?
 > Two reasons. The french suggested TUC, the english speaking world CUT. UTC is the compromise that left noone satisfied.
 {: .callout}
 
-Posix time define an instant on the timeline as the number of seconds elapsed since 00:00:00 UTC on January 1st 1970. Time before that arbitrarily selected date is counted as negative seconds.
+In R time is measured using Posix time, an instant on the timeline 
+defined as the number of seconds elapsed since 00:00:00 UTC on January 1st 1970. 
+Time before that arbitrarily selected date is counted as negative seconds.
 
-We are not going to go into leap seconds and the specifics of how Posix time is adjusted to keep it in sync with UTC. That way lies madness.
+We are not going to go into leap seconds and the specifics of how Posix time is 
+adjusted to keep it in sync with UTC. That way lies madness.
 
-For the purposes of this introduction, we are going to disregard leap seconds, positive as well as negative, and go with the definition that a point in time is given by the number of seconds (or milliseconds or whatever resolution we need), after or before 00:00:00 UTC on January 1st 1970.
-
-As hinted to handling times and dates is not easy, and fortunately someone else has written libraries that make everything not easy, but easier.
+Handling times and dates is not easy, and fortunately someone else has written libraries that make everything not easy, but easier.
 
 We are going to be working with two libraries, lubridate, which is part of the tidyverse, and zoo.
 
-Lubridate handles most of the things we need to do with time. Zoo provides infrastructure for handling time-series, an important, but confusing topic in itself. We are going to be using it for handling irregular time, like quarters and months.
+Lubridate handles most of the things we need to do with time. 
+It will also allow us to take into account timezones. 
+
+Zoo provides infrastructure for handling time-series, an important, but confusing topic in itself. We are going to be using it for handling irregular time, like quarters and months.
 
 We are working with a limited number of phenomenons regarding time:
 

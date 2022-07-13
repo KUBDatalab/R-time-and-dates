@@ -15,6 +15,10 @@ keypoints:
 source: Rmd
 ---
 
+Sometimes we have to work with less than ordinary time formats.
+
+Information might be delivered aggregated by month, quarter 
+
 kvartaler og den slags.
 zoo biblioteket.
 
