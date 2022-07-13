@@ -12,6 +12,12 @@ keypoints:
 - "keypoint1"
 source: Rmd
 ---
+
+
+Tidszoner kunne være meget værre. 
+https://imgs.xkcd.com/comics/consensus_time.png
+Men det er ikke så godt...
+
 Nu har vi fået konverteret vores tidsangivelser til noget R forstår. UTC. Hvordan laver vi så matematik på de angivelser.
 
 Så laver vi matematik på date-times.
